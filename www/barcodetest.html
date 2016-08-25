@@ -1,0 +1,41 @@
+<ons-page class="center">
+
+    <ul class="fa-ul">
+        <ons-list-item 
+        	class="topcoat-list__item_active"
+			ng-click="ons.slidingMenu.toggleMenu();">
+			<i class="fa-li fa fa-bars fa-lg" style="top: 25%"></i>
+		    Barcode Test
+		</ons-list-item>
+    </ul>
+    <input type="button" onClick ="scanBarcode()" value ="Scan" />
+    <hr/>
+    <ul id="scans"></ul>
+
+  <script type="text/javascript">
+  
+  
+  function scanBarcode()
+  {
+
+    window.plugins.barcodeScanner.scan( function(result)
+    {
+        
+        $('#scans').append('<li>' + "We got a barcode\n" +
+                      "Result: " + result.text + "\n" +
+                      "Format: " + result.format + "\n" +
+                      "Cancelled: " + result.cancelled);
+        
+//            alert("We got a barcode\n" +
+//                      "Result: " + result.text + "\n" +
+//                      "Format: " + result.format + "\n" +
+//                      "Cancelled: " + result.cancelled);
+                }, function(error)
+                    {
+                        alert("Scanning failed: " + error);
+                    }
+            );
+
+  }
+  </script>
+</ons-page>

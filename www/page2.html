@@ -1,0 +1,25 @@
+<ons-page class="center">
+
+    <ul class="fa-ul">
+        <ons-list-item 
+    		class="topcoat-list__item_active"
+			ng-click="ons.slidingMenu.toggleMenu();">
+			<i class="fa-li fa fa-bars fa-lg" style="top: 25%"></i>
+		    N6S Stock Quotes
+		</ons-list-item>
+    </ul>
+	<h1>Quick Quotes</h1>
+
+    <ul id="quotes"></ul>
+    
+    <script type="text/javascript">
+        $(function () {
+            $.getJSON('http://services.nexus6studio.com/api/StockTicker/?Symbols=MSFT&Symbols=MO&Symbols=T', function (StockTickersJsonPayload) {
+                $(StockTickersJsonPayload).each(function (i, item) {
+                    $('#quotes').append('<li>' + item.Symbol + '  Last Trade:' + item.LastTrade + '</li>');
+                });
+            });
+        });
+    </script>       
+
+</ons-page>

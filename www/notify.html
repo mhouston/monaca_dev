@@ -1,0 +1,31 @@
+<ons-page class="center">
+
+    <ul class="fa-ul">
+        <ons-list-item 
+        	class="topcoat-list__item_active"
+			ng-click="ons.slidingMenu.toggleMenu();">
+			<i class="fa-li fa fa-bars fa-lg" style="top: 25%"></i>
+		    Notify Test
+		</ons-list-item>
+    </ul>
+    <br/>
+    <input type="button" onClick ="vibrateTest()" value ="Vibrate" />
+    <br/><br/><br/>
+    <input type="button" onClick ="beepTest()" value ="Beep" />
+    <br/><br/><br/>
+    
+    <ul id="scans"></ul>
+
+  <script type="text/javascript">
+
+  function vibrateTest()
+  {
+      navigator.notification.vibrate();
+  }
+  
+  function beepTest()
+  {
+      navigator.notification.beep(2);
+  }
+  </script>
+</ons-page>

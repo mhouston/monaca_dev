@@ -1,0 +1,211 @@
+<ons-page class="center page-padding">
+
+    <ul class="fa-ul">
+        <ons-list-item 
+			class="topcoat-list__item_active"
+			ng-click="ons.slidingMenu.toggleMenu();">
+			<i class="fa-li fa fa-bars fa-lg" style="top: 25%"></i>
+			N6S Stock Quotes
+		</ons-list-item>
+    </ul>
+    
+	<h1>Get A Quote</h1>
+    <div id="StockTickerDemo">
+        <p>            
+            <label for="symbol">Ticker Symbol:</label>
+            <ons-select id="symbol" ng-model="selectedValue" onchange="getQuote()">    
+                <option>MSFT</option>
+                <option>T</option>
+                <option>GE</option>
+                <option>MO</option>
+            </ons-select>
+        </p>
+        <p>
+            <div id="quoteResults">
+                <table align="center">
+                    <tr>
+                		<td align="right"></td>
+                        <td align="left"></td>
+                	</tr>
+                    <tr>
+                    	<td align="right">Last $:</td>
+                        <td align="left"><input type="text" id="lastTrade" size="10" /></td>
+                	</tr>
+                    <tr>
+                    	<td align="right">Volume:</td>
+                        <td align="left"><input type="text" id="volume" size="10"/></td>
+                	</tr>
+                    <tr>
+                    	<td align="right">High:</td>
+                        <td align="left"><input type="text" id="high" size="10"/></td>
+                	</tr>
+                    <tr>
+                    	<td align="right">Low:</td>
+                        <td align="left"><input type="text" id="low" size="10"/></td>
+                	</tr>
+                    <tr>
+                    	<td align="right">Open:</td>
+                        <td align="left"><input type="text" id="open" size="10"/></td>
+                	</tr>
+                    <tr>
+                    	<td align="right">Chg %:</td>
+                        <td align="left"><input type="text" id="changePercentage" size="10"/></td>
+                	</tr>
+                    <tr>
+                    	<td align="right">Last Date:</td>
+                        <td align="left"><input type="text" id="tradedate" size="10"/></td>
+                	</tr>
+                    <tr>
+                    	<td align="right">Last Time</td>
+                        <td align="left"><input type="text" id="tradeTime" size="10"/></td>
+                	</tr>
+                    <tr>
+                    	<td align="right">Sym:</td>
+                        <td align="left"><input type="text" id="requestSymbol" size="10"/></td>
+                	</tr>                    
+                </table>
+            </div>
+        </p>
+    </div>
+
+<!--
+    <ons-button 
+		ng-click="ons.slidingMenu.toggleMenu()">
+		Toggle Menu
+	</ons-button>
+	
+	<p>Click "Toggle Menu" to close/open menu,</p>
+    
+	<p>You can also swipe the page left/right.</p>
+	<img src="images/ico_swipe_right_s.png" alt="">-->
+        
+    <script type="text/javascript">
+//        $(function () {
+//            
+//            var currA = [];
+//            
+//            $('#symbol option').each(function() {
+//                currA.push($(this).val());
+//            });
+//            
+//            alert(currA);
+//            
+//            //var sel = $('select[id=symbol]');
+//            //alert(sel.options.length);
+//            //alert(symbols);
+////            while (sel.options.length)
+////              {
+////              sel.remove(0);
+////              }            
+//            if($('#symbol option') != null)
+//            {
+//                for (var i = 0; i < symbols.length; i++) {
+//                    $('#symbol option').add(new Option(symbols[i]));
+//    //                sel.options[sel.options.length] = new Option(symbols[i],symbols[i]);
+//                }
+//            }
+//            
+////            for(s in symbols)
+////            {
+////                sel.options[sel.options.length] = new Option(s,s);
+////            }
+////            $.each( symbols, function(i, s) {
+//////                a.xpos += a.xvel;
+//////                a.ypos += a.yvel;
+////                    sel.options[sel.options.length] = new Option(s,s);
+////            });
+////        });
+//            
+//            //select.options[select.options.length] = new Option("Option text", "optionValue");
+//            
+//            
+//        });            
+
+        function getQuote(){
+
+            console.log("ENTER : getQuote");
+//            try
+//            {
+            //alert('http://services.nexus6studio.com/api/StockTicker/?Symbol=' + $("select[id=symbol] option:selected").text());
+
+            
+
+            $.getJSON('http://services.nexus6studio.com/api/StockTicker/?Symbol=' + $("select[id=symbol] option:selected").text(), function (data) {
+               // $('#quoteResults').slideUp(1000);                
+                $('#lastTrade').val(data.LastTrade);
+                $('#volume').val(data.Volume);
+                $('#high').val(data.DayHigh);
+                $('#low').val(data.DayLow);
+                $('#open').val(data.Open);
+                $('#changePercentage').val(data.ChangePercentage);
+                $('#tradeTime').val(data.TradeTime);
+                $('#tradedate').val(data.Date);
+                $('#requestSymbol').val(data.Symbol);                
+                //$('#quoteResults').slideDown(1000);                
+                //$('#txtSymbolInput').val(symbols[1]);
+                
+                })
+                
+  .done(function() {
+    console.log( "second success" );
+  })
+  .fail(function( jqxhr, textStatus, error ) {
+    var err = textStatus + ", " + error;
+    console.log( "Request Failed: " + err );
+
+})
+  .always(function() {
+    console.log( "complete" );
+  })                
+                
+                
+                ;
+
+//            $.getJSON('http://services.nexus6studio.com/api/StockTicker/?Symbol=' + $("select[id=symbol] option:selected").text(), function (data) {
+//               // $('#quoteResults').slideUp(1000);                
+//                $('#lastTrade').val(data.LastTrade);
+//                $('#volume').val(data.Volume);
+//                $('#high').val(data.DayHigh);
+//                $('#low').val(data.DayLow);
+//                $('#open').val(data.Open);
+//                $('#changePercentage').val(data.ChangePercentage);
+//                $('#tradeTime').val(data.TradeTime);
+//                $('#tradedate').val(data.Date);
+//                $('#requestSymbol').val(data.Symbol);                
+//                //$('#quoteResults').slideDown(1000);                
+//                //$('#txtSymbolInput').val(symbols[1]);                
+//                             
+//                });
+//            }
+//            catch
+//            {
+//                console.log("function getQuote erored---");    
+//            }
+
+            console.log("EXIT : getQuote");
+        }
+
+//        $('#symbol').change(function () {
+//
+//            //$('#quoteResults').slideUp(1000);
+//           // $('#quoteResults').fadeTo("slow",.15);
+//            //{"Symbol":"T","Date":"1/3/2014","TradeTime":"4:00pm","DayHigh":"35.16","DayLow":"34.61","ChangePercentage":"-0.15","Volume":"24622450","Open":"35.15","LastTrade":"34.80"}
+//            alert('test');
+//
+//            $.getJSON('http://services.nexus6studio.com/api/StockTicker/?Symbol=' + $("select[id=symbol] option:selected").text(), function (data) {                
+//                $('#lastTrade').val(data.LastTrade);
+//                $('#volume').val(data.Volume);
+//                $('#high').val(data.DayHigh);
+//                $('#low').val(data.DayLow);
+//                $('#open').val(data.Open);
+//                $('#changePercentage').val(data.ChangePercentage);
+//                $('#tradeTime').val(data.TradeTime);
+//                $('#tradedate').val(data.Date);
+//                $('#requestSymbol').val(data.Symbol);
+//                //   $('#quoteResults').fadeTo("slow", 1);
+//                // $('#quoteResults').slideDown(1000);                
+//            });
+//        });
+    </script>    
+    
+</ons-page>

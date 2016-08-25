@@ -1,0 +1,35 @@
+{
+    "framework_version": "3.5",
+    "plugins": [
+        "mobi.monaca.plugins.datepicker",
+        "mobi.monaca.plugins.Share",
+        "mobi.monaca.plugins.BarcodeScanner",
+        "mobi.monaca.plugins.WebIntent",
+        "mobi.monaca.plugins.MonacaBackend",
+        "mobi.monaca.plugins.Monaca",
+        "mobi.monaca.appccloud.appCCloudPlugin",
+        "plugin.push.nifty",
+        "com.msopentech.azure-mobile-services"
+    ],
+    "cordova_version": "5.2",
+    "plugin_settings": [],
+    "external_plugins": [
+        "cordova-plugin-camera@1.2.0",
+        "cordova-plugin-splashscreen@2.1.0",
+        "cordova-plugin-vibration@1.2.0",
+        "cordova-plugin-device-orientation@1.0.1",
+        "cordova-plugin-device-motion@1.1.1",
+        "cordova-plugin-contacts@1.1.0",
+        "cordova-plugin-device@1.0.1",
+        "cordova-plugin-battery-status@1.1.0",
+        "cordova-plugin-geolocation@1.0.1",
+        "cordova-plugin-inappbrowser@1.0.1",
+        "cordova-plugin-statusbar@1.0.1",
+        "cordova-plugin-dialogs@1.1.1",
+        "cordova-plugin-media@1.0.1",
+        "cordova-plugin-file@3.0.0",
+        "cordova-plugin-media-capture@1.0.1",
+        "cordova-plugin-network-information@1.0.1",
+        "cordova-plugin-whitelist@1.0.0"
+    ]
+}
